@@ -1,0 +1,36 @@
+//
+// Buttons
+//
+
+// generic
+.button {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  min-width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+
+  & + & {
+    margin-left: 0.25rem;
+  }
+
+  &:not(.button--diasbled) {
+    cursor: pointer;
+
+    &:hover {
+      border-color: #666;
+    }
+
+    &:active {
+      border-color: #000;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
