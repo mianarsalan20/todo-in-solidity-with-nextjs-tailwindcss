@@ -28,10 +28,10 @@ export default function Home() {
         return;
       }
       let chainId = await ethereum.request({ method: "eth_chainId" });
-      alert("Connected to " + chainId);
+      console.log("Connected to " + chainId);
       const rinkebyChainId = "0x4";
       if (chainId !== rinkebyChainId) {
-        alert("Please connect to Rinkeby Test Network");
+        console.log("Please connect to Rinkeby Test Network");
         setCorrectNetwork(false);
         return;
       } else {
