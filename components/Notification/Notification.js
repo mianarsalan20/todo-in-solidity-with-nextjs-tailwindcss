@@ -1,5 +1,3 @@
-import styles from "./notification-styles.module.scss";
-
 function Notification({ message }) {
   const styles = {
     wrapper: `fixed z-2 bottom-2 inline-block bg-white my-0 mx-4 border border-gray-300 border-solid px-2 py-4 text-left rounded`,

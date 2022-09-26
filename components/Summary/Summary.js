@@ -1,5 +1,3 @@
-import styles from "./summary-styles.module.scss";
-
 const Summary = ({ completed, total }) => {
   const summaryMessage = () => {
     const styles = {
