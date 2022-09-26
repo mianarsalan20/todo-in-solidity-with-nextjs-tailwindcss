@@ -48,10 +48,10 @@ contract TodoTaskContract {
     }
    }
 
-   function completeTask(uint taskId, string memory completedAt) public {
-    tasks[taskId].isChecked = true;
+   function completeTask(uint taskId,bool isChecked, string memory completedAt) public {
+    tasks[taskId].isChecked = isChecked;
     tasks[taskId].compeledAt = completedAt;
-    emit CompleteTask(taskId, true, completedAt);
+    emit CompleteTask(taskId, isChecked, completedAt);
    }
 
 }

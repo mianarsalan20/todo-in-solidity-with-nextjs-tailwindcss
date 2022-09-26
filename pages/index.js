@@ -16,7 +16,6 @@ export default function Home() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [input, setInput] = useState("");
   const [tasks, setTasks] = useState([]);
-
   useEffect(() => {
     getAllTasks();
   }, []);
@@ -130,6 +129,40 @@ export default function Home() {
     }
   };
 
+  // Complete tasks from front-end by filtering it out on our "back-end" / blockchain smart contract
+  const completeTask = (key, checkKey) => async () => {
+    console.log(checkKey);
+    try {
+      const { ethereum } = window;
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const todoTaskContract = new ethers.Contract(
+          TodoTaskContractAddress,
+          TodoTaskAbi.abi,
+          signer
+        );
+        if (checkKey == true) {
+          await todoTaskContract.completeTask(key, false, "");
+        } else {
+          await todoTaskContract.completeTask(
+            key,
+            true,
+            moment().format("MMMM Do YYYY, h:mm:ss a")
+          );
+        }
+
+        console.log("Task Completed successfully");
+        let allTasks = await todoTaskContract.getMyTasks();
+        setTasks(allTasks);
+      } else {
+        console.log("Etherum Object not found");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-[#97b5fe] h-screen w-screen flex justify-center py-6">
       {!isUserLoggedIn ? (
@@ -141,6 +174,7 @@ export default function Home() {
           setInput={setInput}
           addTask={addTask}
           removeTask={removeTask}
+          completeTask={completeTask}
         />
       ) : (
         <WrongNetworkMessage />

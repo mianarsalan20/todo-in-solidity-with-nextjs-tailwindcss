@@ -1,2 +1,2 @@
 export const TodoTaskContractAddress =
-  "0x572C94930b063a6956b4c41dA69C24Bb8f5D82eb";
+  "0x4C3B04Dedf56f71e02b86122aCdfa6E7179998FB";

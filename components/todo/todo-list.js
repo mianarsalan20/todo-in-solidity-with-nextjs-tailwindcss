@@ -10,7 +10,14 @@ import styles from "./todo-styles.module.scss";
 import Notification from "../Notification/Notification";
 import Summary from "../Summary/Summary";
 
-function ToDoList({ tasks, input, setInput, addTask, removeTask }) {
+function ToDoList({
+  tasks,
+  input,
+  setInput,
+  addTask,
+  removeTask,
+  completeTask,
+}) {
   const incompletedTasks = tasks.filter((item) => item.isChecked === false);
   const completedTasks = tasks
     .filter((item) => item.isChecked === true)
@@ -42,20 +49,32 @@ function ToDoList({ tasks, input, setInput, addTask, removeTask }) {
         </form>
 
         <ul className={styles["tasks-list"]}>
-          {tasks.map((item) => (
+          {incompletedTasks.map((item) => (
             <ToDoItem
               key={item.id}
               taskTitle={item.title}
               createdAt={item.createdAt}
-              compeledAt={item.compeledAt}
+              completedAt={item.compeledAt}
               checked={item.isChecked}
-              onClick={removeTask(item.id)}
-
-              // taskCompleted={item.completed}
-              // taskdelete={item.completedAt}
+              onClickRemove={removeTask(item.id)}
+              onClickComplete={(checkKey) => completeTask(item.id, checkKey)}
             />
           ))}
         </ul>
+        <ul className={styles["tasks-list"]}>
+          {completedTasks.map((item) => (
+            <ToDoItem
+              key={item.id}
+              taskTitle={item.title}
+              createdAt={item.createdAt}
+              completedAt={item.compeledAt}
+              checked={item.isChecked}
+              onClickRemove={removeTask(item.id)}
+              onClickComplete={(checkKey) => completeTask(item.id, checkKey)}
+            />
+          ))}
+        </ul>
+        <Summary completed={completedTasks.length} total={tasks.length} />
       </div>
     </>
   );
