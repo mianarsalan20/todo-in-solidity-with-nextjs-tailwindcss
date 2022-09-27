@@ -4,6 +4,12 @@
 ```bash
 https://youtu.be/spG_CtCzAzg
 ```
+# [Project Demo Link](https://leafy-gingersnap-23aae2.netlify.app/)
+
+
+```bash
+https://leafy-gingersnap-23aae2.netlify.app/
+```
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
